@@ -10,6 +10,7 @@ import acme.framework.repositories.AbstractRepository;
 @Repository
 public interface AdministratorAdministratorDashboardRepository extends AbstractRepository {
 
+	// COMPONENT ----------------------------------------------------------------------------------------------------
 	
 	@Query("select count(c) from Invention c where c.inventionType=acme.entities.inventions.InventionType.COMPONENT")
 	Double findNumberComponents();
@@ -26,9 +27,7 @@ public interface AdministratorAdministratorDashboardRepository extends AbstractR
 	@Query("select concat(c.technology,':', c.retailPrice.currency,':', max(c.retailPrice.amount)) from Invention c where c.inventionType=acme.entities.inventions.InventionType.COMPONENT group by c.technology, c.retailPrice.currency")
 	List<String> findMaximumRetailPriceComponent();
 	
-	
-	
-	
+	// TOOLS ----------------------------------------------------------------------------------------------------
 	
 	@Query("select count(t) from Invention t where t.inventionType=acme.entities.inventions.InventionType.TOOL")
 	Double findNumberTools();
@@ -45,8 +44,7 @@ public interface AdministratorAdministratorDashboardRepository extends AbstractR
 	@Query("select concat(t.retailPrice.currency,':', max(t.retailPrice.amount)) from Invention t where t.inventionType=acme.entities.inventions.InventionType.TOOL group by t.retailPrice.currency")
 	List<String> findMaximumRetailPriceTools();
 	
-	
-	
+	// PATRONAGES ----------------------------------------------------------------------------------------------------
 	
 	@Query("select concat(p.status, ':', count(p)) from Patronage p group by p.status")
 	List<String> findNumberPatronages();
@@ -62,6 +60,23 @@ public interface AdministratorAdministratorDashboardRepository extends AbstractR
 	
 	@Query("select concat(p.status, ':',max(p.budget.amount)) from Patronage p group by p.status")
 	List<String> findMaximumBudgetPatronage();
+	
+	// Peman ----------------------------------------------------------------------------------------------------
+	
+	@Query("SELECT count(p) from Peman p where p.invention.inventionType=acme.entities.inventions.InventionType.TOOL")
+	Double findInventionsWithPeman();
+	
+	@Query("SELECT concat(p.expenditure.currency,':', avg(p.expenditure.amount)) FROM Peman p GROUP BY p.expenditure.currency")
+	List<String> findAverageExpenditurePeman();
+	
+	@Query("SELECT concat(p.expenditure.currency,':', stddev(p.expenditure.amount)) FROM Peman p GROUP BY p.expenditure.currency")
+	List<String> findDeviationExpenditurePeman();
+	
+	@Query("SELECT concat(p.expenditure.currency,':', min(p.expenditure.amount)) FROM Peman p GROUP BY p.expenditure.currency")
+	List<String> findMinimumExpenditurePeman();
+	
+	@Query("SELECT concat(p.expenditure.currency,':', max(p.expenditure.amount)) FROM Peman p GROUP BY p.expenditure.currency")
+	List<String> findMaximumExpenditurePeman();
 	
 	
 }

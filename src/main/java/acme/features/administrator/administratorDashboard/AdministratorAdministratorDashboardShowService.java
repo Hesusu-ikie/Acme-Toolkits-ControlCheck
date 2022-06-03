@@ -34,7 +34,7 @@ public class AdministratorAdministratorDashboardShowService implements AbstractS
 	public AdministratorDashboard findOne(final Request<AdministratorDashboard> request) {
 		assert request != null;
 		
-		final Double						         numberComponents = this.repository.findNumberComponents();
+		final Double						       numberComponents = this.repository.findNumberComponents();
 		
 	    final Map<Pair<String, String>, Double>    averageRetailPriceComponents= new HashMap<>();
 	    final Map<Pair<String, String>, Double>    deviationRetailPriceComponents= new HashMap<>();
@@ -50,7 +50,7 @@ public class AdministratorAdministratorDashboardShowService implements AbstractS
 	    final Map<String, Double>                  maximumRetailPriceTools= new HashMap<>();
 	    
 	    
-	    final Map<PatronageStatus, Double>             	   numberPatronages = new EnumMap<>(PatronageStatus.class);
+	    final Map<PatronageStatus, Double>         numberPatronages = new EnumMap<>(PatronageStatus.class);
 	    
 	    final Map<PatronageStatus, Double>         averageBudgetPatronage= new EnumMap<>(PatronageStatus.class);
 	    final Map<PatronageStatus, Double>         deviationBudgetPatronage= new EnumMap<>(PatronageStatus.class);
@@ -127,6 +127,34 @@ public class AdministratorAdministratorDashboardShowService implements AbstractS
 	    	maximumBudgetPatronage.put(PatronageStatus.values()[Integer.parseInt(maximumPatronages[0])], Double.parseDouble(maximumPatronages[1]));
 	    }
 	    
+		final Double toolsWithPeman;
+		final Double ratioInventionWithPeman;
+		final Map<String, Double> averageBudgetPeman = new HashMap<>();
+		final Map<String, Double> deviationBudgetPeman = new HashMap<>();
+		final Map<String, Double> minimumBudgetPeman = new HashMap<>();
+		final Map<String, Double> maximumBudgetPeman = new HashMap<>();
+		
+		toolsWithPeman=this.repository.findInventionsWithPeman();
+		ratioInventionWithPeman = toolsWithPeman/numberTools;
+		
+		final List<String> findAverageExpenditurePeman = this.repository.findAverageExpenditurePeman();
+		final List<String> findDeviationExpenditurePeman = this.repository.findDeviationExpenditurePeman();
+		final List<String> findMinimumExpenditurePeman = this.repository.findMinimumExpenditurePeman();
+		final List<String> findMaximumExpenditurePeman = this.repository.findMaximumExpenditurePeman();
+		
+		for(int i=0;i<findAverageExpenditurePeman.size();i++) {
+			final String[] averageExpenditure=findAverageExpenditurePeman.get(i).split(":");
+			averageBudgetPeman.put(averageExpenditure[0], Double.parseDouble(averageExpenditure[1]));
+	    	
+	    	final String[] deviationExpenditure=findDeviationExpenditurePeman.get(i).split(":");
+	    	deviationBudgetPeman.put(deviationExpenditure[0], Double.parseDouble(deviationExpenditure[1]));
+	    	
+	    	final String[] minimumExpenditure=findMinimumExpenditurePeman.get(i).split(":");
+	    	minimumBudgetPeman.put(minimumExpenditure[0], Double.parseDouble(minimumExpenditure[1]));
+	    	
+	    	final String[] maximumExpenditure=findMaximumExpenditurePeman.get(i).split(":");
+	    	maximumBudgetPeman.put(maximumExpenditure[0], Double.parseDouble(maximumExpenditure[1]));
+		}
 
 	    result.setNumberComponents(numberComponents);
 	    
@@ -146,6 +174,12 @@ public class AdministratorAdministratorDashboardShowService implements AbstractS
 	    result.setDeviationBudgetPatronage(deviationBudgetPatronage);
 	    result.setMinimumBudgetPatronage(minimumBudgetPatronage);
 	    result.setMaximumBudgetPatronage(maximumBudgetPatronage);
+	    
+	    result.setRatioToolsWithPeman(ratioInventionWithPeman);
+	    result.setAverageBudgetPeman(averageBudgetPeman);
+	    result.setDeviationBudgetPeman(deviationBudgetPeman);
+	    result.setMinimumBudgetPeman(minimumBudgetPeman);
+	    result.setMaximumBudgetPeman(maximumBudgetPeman);
 	        
 	    return result;
 	}
@@ -175,7 +209,11 @@ public class AdministratorAdministratorDashboardShowService implements AbstractS
 		model.setAttribute("minimumBudgetPatronage", entity.getMinimumBudgetPatronage());
 		model.setAttribute("maximumBudgetPatronage", entity.getMaximumBudgetPatronage());
 	
-	
+		model.setAttribute("ratioInventionWithPeman", entity.getRatioToolsWithPeman());
+		model.setAttribute("averageBudgetPeman", entity.getAverageBudgetPeman());
+		model.setAttribute("deviationBudgetPeman", entity.getDeviationBudgetPeman());
+		model.setAttribute("minimumBudgetPeman", entity.getMinimumBudgetPeman());
+		model.setAttribute("maximumBudgetPeman", entity.getMaximumBudgetPeman());
 	
 	}
 

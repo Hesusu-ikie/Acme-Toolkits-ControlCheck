@@ -14,31 +14,38 @@ import lombok.Setter;
 @Setter
 public class AdministratorDashboard implements Serializable{
 	
-	// Serialisation identifier -----------------------------------------------
+		// Serialisation identifier -----------------------------------------------
 
 		protected static final long	serialVersionUID	= 1L;
 
 		// Attributes -------------------------------------------------------------
-		Double						         numberComponents;
+		Double						         	numberComponents;
 		
-	    Map<Pair<String, String>, Double>    averageRetailPriceComponents;
-	    Map<Pair<String, String>, Double>    deviationRetailPriceComponents;
-	    Map<Pair<String, String>, Double>    minimumRetailPriceComponents;
-	    Map<Pair<String, String>, Double>    maximumRetailPriceComponents;
+	    Map<Pair<String, String>, Double>    	averageRetailPriceComponents;
+	    Map<Pair<String, String>, Double>    	deviationRetailPriceComponents;
+	    Map<Pair<String, String>, Double>    	minimumRetailPriceComponents;
+	    Map<Pair<String, String>, Double>    	maximumRetailPriceComponents;
 	    
-	    Double                               numberTools;
+	    Double                              	numberTools;
 	    
-	    Map<String, Double>                  averageRetailPriceTools;
-	    Map<String, Double>                  deviationRetailPriceTools;
-	    Map<String, Double>                  minimumRetailPriceTools;
-	    Map<String, Double>                  maximumRetailPriceTools;
+	    Map<String, Double>                  	averageRetailPriceTools;
+	    Map<String, Double>                  	deviationRetailPriceTools;
+	    Map<String, Double>                  	minimumRetailPriceTools;
+	    Map<String, Double>                  	maximumRetailPriceTools;
 	    
-	    Map<PatronageStatus,Double>					numberPatronages;
+	    Map<PatronageStatus,Double>				numberPatronages;
 	    
-	    Map<PatronageStatus, Double>         averageBudgetPatronage;
-	    Map<PatronageStatus, Double>         deviationBudgetPatronage;
-	    Map<PatronageStatus, Double>         minimumBudgetPatronage;
-	    Map<PatronageStatus, Double>         maximumBudgetPatronage;
+	    Map<PatronageStatus, Double>       		averageBudgetPatronage;
+	    Map<PatronageStatus, Double>         	deviationBudgetPatronage;
+	    Map<PatronageStatus, Double>         	minimumBudgetPatronage;
+	    Map<PatronageStatus, Double>         	maximumBudgetPatronage;	
+	    
+	    Double 									ratioToolsWithPeman;
+
+	    Map<String, Double>                  	averageBudgetPeman;
+	    Map<String, Double>                  	deviationBudgetPeman;
+	    Map<String, Double>                  	minimumBudgetPeman;
+	    Map<String, Double>                  	maximumBudgetPeman;
 
 		// Derived attributes -----------------------------------------------------
 
