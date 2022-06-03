@@ -42,10 +42,10 @@ public class AdministratorDashboard implements Serializable{
 	    
 	    Double 									ratioToolsWithPeman;
 
-	    Map<String, Double>                  	averageBudgetPeman;
-	    Map<String, Double>                  	deviationBudgetPeman;
-	    Map<String, Double>                  	minimumBudgetPeman;
-	    Map<String, Double>                  	maximumBudgetPeman;
+	    Map<String, Double>                  	averageExpenditurePeman;
+	    Map<String, Double>                  	deviationExpenditurePeman;
+	    Map<String, Double>                  	minimumExpenditurePeman;
+	    Map<String, Double>                  	maximumExpenditurePeman;
 
 		// Derived attributes -----------------------------------------------------
 

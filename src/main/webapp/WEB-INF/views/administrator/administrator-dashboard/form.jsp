@@ -344,7 +344,7 @@
 			<acme:message code="administrator.dashboard.form.label.ratio.peman"/>
 		</th>
 		<td>
-			<acme:print value="${ratioInventionWithPeman}"/>
+			<acme:print value="${ratioToolsWithPeman}"/>
 		</td>
 	</tr>
 </table>
@@ -353,7 +353,7 @@
 	<acme:message code="administrator.dashboard.form.label.average.value"/>
 </h3>
 <table class="table table-sm" aria-describedby="administrator.dashboard.form.label.average.value">
-	<jstl:forEach var="entry" items="${averageBudgetPeman}">
+	<jstl:forEach var="entry" items="${averageExpenditurePeman}">
 		<tr>
 			<th scope="row">
 				<acme:message code="administrator.dashboard.form.label.currency"/>
@@ -374,7 +374,7 @@
 	<acme:message code="administrator.dashboard.form.label.deviation.value"/>
 </h3>
 <table class="table table-sm" aria-describedby="administrator.dashboard.form.label.deviation.value">
-	<jstl:forEach var="entry" items="${deviationBudgetPeman}">
+	<jstl:forEach var="entry" items="${deviationExpenditurePeman}">
 		<tr>
 			<th scope="row">
 				<acme:message code="administrator.dashboard.form.label.currency"/>
@@ -395,7 +395,7 @@
 	<acme:message code="administrator.dashboard.form.label.minimum.value"/>
 </h3>
 <table class="table table-sm" aria-describedby="administrator.dashboard.form.label.minimum.value">
-	<jstl:forEach var="entry" items="${minimumBudgetPeman}">
+	<jstl:forEach var="entry" items="${minimumExpenditurePeman}">
 		<tr>
 			<th scope="row">
 				<acme:message code="administrator.dashboard.form.label.currency"/>
@@ -416,7 +416,7 @@
 	<acme:message code="administrator.dashboard.form.label.maximum.value"/>
 </h3>
 <table class="table table-sm" aria-describedby="administrator.dashboard.form.label.maximum.value">
-	<jstl:forEach var="entry" items="${maximumBudgetPeman}">
+	<jstl:forEach var="entry" items="${maximumExpenditurePeman}">
 		<tr>
 			<th scope="row">
 				<acme:message code="administrator.dashboard.form.label.currency"/>
